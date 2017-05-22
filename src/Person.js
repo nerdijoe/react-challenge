@@ -15,11 +15,6 @@ const Person = (props) => {
 			</div>
 		)
 	}
-	else if (index > people.length) {
-			<div>
-				<h3>Data Error..</h3>
-			</div>
-	}
 	else {
 		return (
 			<div>
