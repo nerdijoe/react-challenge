@@ -19,13 +19,13 @@ const Home = (props) => {
         <h1>Home</h1>
 
         <AddPersonButton clickAddPerson={() => { props.clickAddPerson()}} />
+
         <ul>
           { 
             props.people.map( (p, i) => {
             return (
               <li key={p.url}>
-                {p.name}, {p.gender}, {p.birth_year} ,
-                <Link to={`/person/${i}`} >detail</Link>
+                <Link to={`/person/${i}`} >{p.name}</Link>, {p.gender}, {p.birth_year}
               </li>
             )
             })
@@ -118,12 +118,10 @@ class App extends Component {
     console.log("render")
     return (
       <BrowserRouter>
-      <div>
-        <Home people={this.state.people} clickAddPerson={ () => this.clickAddPerson()}  />
-
-        <Route path='/person/:index' component={(props) => <Person match={props.match} getPeople={this.getPeople() } />} />
-      </div>
-
+        <div>
+          <Home people={this.state.people} clickAddPerson={ () => this.clickAddPerson()}  />
+          <Route path='/person/:index' component={(props) => <Person match={props.match} getPeople={this.getPeople() } />} />
+        </div>
       </BrowserRouter>
 
     );

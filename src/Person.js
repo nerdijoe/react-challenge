@@ -8,12 +8,17 @@ const Person = (props) => {
 	let people = props.getPeople
 	console.log(props.getPeople)
 
-	if(people.length == 0) {
+	if(people.length === 0) {
 		return (
 			<div>
-				<h3>Data is loading from galaxy far away..</h3>
+				<h3>Loading data from galaxy far away..</h3>
 			</div>
 		)
+	}
+	else if (index > people.length) {
+			<div>
+				<h3>Data Error..</h3>
+			</div>
 	}
 	else {
 		return (
