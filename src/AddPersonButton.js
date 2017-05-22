@@ -7,7 +7,7 @@ class addPersonButton extends React.Component {
 	// }
 
 	render() {
-			console.log(Colors)
+			// console.log(Colors)
 			return (
 				<div className="button-basics-example">
 					<Button color={Colors.SUCCESS} onClick={this.props.clickAddPerson}> Add </Button>

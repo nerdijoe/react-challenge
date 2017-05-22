@@ -3,15 +3,37 @@ import './App.css';
 import axios from 'axios'
 import AddPersonButton from './AddPersonButton.js'
 
+import Person from './Person.js'
+
 import {
   BrowserRouter,
-  Route
+  Route,
+  Link
 } from 'react-router-dom'
 
 
-const Home = () => { 
+const Home = (props) => { 
   return (
-    <h1>Home</h1>   
+
+      <div>
+        <h1>Home</h1>
+
+        <AddPersonButton clickAddPerson={() => { props.clickAddPerson()}} />
+        <ul>
+          { 
+            props.people.map( (p, i) => {
+            return (
+              <li key={p.url}>
+                {p.name}, {p.gender}, {p.birth_year} ,
+                <Link to={`/person/${i}`} >detail</Link>
+              </li>
+            )
+            })
+          }
+        </ul>
+
+      </div>
+
   )
   
 }
@@ -87,27 +109,23 @@ class App extends Component {
 
   }
 
+  getPeople() {
+    return this.state.people
+  }
+
 
   render() {
     console.log("render")
     return (
-
-
-      <div>
       <BrowserRouter>
-        <Route exact path='/' component={Home} />
+      <div>
+        <Home people={this.state.people} clickAddPerson={ () => this.clickAddPerson()}  />
+
+        <Route path='/person/:index' component={(props) => <Person match={props.match} getPeople={this.getPeople() } />} />
+      </div>
+
       </BrowserRouter>
 
-        <AddPersonButton clickAddPerson={() => { this.clickAddPerson()}} />
-        <ul>
-          { this.state.people.map( p => {
-            return (
-              <li key={p.url}>{p.name}, {p.gender}, {p.birth_year}</li>
-            )
-          })}
-        </ul>
-
-      </div>
     );
   }
 }
