@@ -9,7 +9,7 @@ import Starwars from './components/StarwarsPeople'
 import GoodBadList from './components/GoodBadList'
 
 import store from './store/manageStore'
-import { fetchFromAPI } from './actions'
+
 
 import {
   BrowserRouter,
@@ -80,9 +80,9 @@ class App extends Component {
         index: index
       })
 
-      store.dispatch({type: 'ADD_FROM_API', people: response.data})
+      // store.dispatch({type: 'ADD_FROM_API', people: response.data})
 
-      store.dispatch(fetchFromAPI())
+      // store.dispatch(fetchFromAPI())
 
     })
     .catch( err => {
@@ -110,7 +110,7 @@ class App extends Component {
         index: index
       })
 
-      store.dispatch({type: 'ADD_FROM_API', people: response.data})
+      // store.dispatch({type: 'ADD_FROM_API', people: response.data})
 
 
     })

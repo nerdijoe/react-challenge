@@ -1,5 +1,8 @@
 
-const starwarsInitialState = []
+const starwarsInitialState = {
+  index: 1,
+  people: []
+}
 
 const Starwars = (state = starwarsInitialState, action) => {
   console.log("Reducer Starwars")
@@ -11,8 +14,14 @@ const Starwars = (state = starwarsInitialState, action) => {
       return state
     }
     case 'ADD_FROM_API': {
+      console.log("+++++++++++")
+      console.log(action)
       console.log(action.people)
-      return [...state, action.people]
+      let updatePeople = [...state.people, action.people]
+      return {...state, people: updatePeople }
+    }
+    case 'INCREMENT_INDEX': {
+      return {...state, index: state.index + 1}
     }
     default: return state
   }
