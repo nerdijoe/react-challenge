@@ -6,6 +6,7 @@ import './App.css';
 import AddPersonButton from './AddPersonButton.js'
 import Person from './Person.js'
 import Starwars from './StarwarsPeople'
+import GoodBadList from './GoodBadList'
 import store from './store/manageStore'
 
 import {
@@ -132,7 +133,10 @@ class App extends Component {
           <Route path='/person/:index' component={(props) => <Person match={props.match} getPeople={this.getPeople() } />} />
 
           <Provider store={store}>
-            <Starwars />
+            <div>
+              <Starwars />
+              <GoodBadList />
+            </div>
           </Provider>
 
         </div>

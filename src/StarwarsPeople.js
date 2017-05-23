@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import StarwarsButton from './addStarwarsButton'
-
 class StarwarsPeople extends React.Component {
 
   render() {
@@ -16,7 +15,10 @@ class StarwarsPeople extends React.Component {
           <ul>
             { this.props.people.map( p =>{
               return (
-                <li key={p.url}> {p.name} </li>
+                <li key={p.url}>
+                  {p.name} <button onClick={() => {this.props.add_good_person(p.name)}}>good</button>
+                  <button onClick={() => {this.props.add_bad_person(p.name)}}>bad</button>
+                </li>
               )
             })}
           </ul>
@@ -34,8 +36,20 @@ class StarwarsPeople extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { people: state }
+  console.log("StarwarsPeople mapStateToProps",state)
+  return { people: state.Starwars }
 }
 
-const connectedStarwars = connect(mapStateToProps,null)(StarwarsPeople)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    add_good_person: (name) => {
+      dispatch({type: 'ADD_GOOD', name: name})
+    },
+    add_bad_person: (name) => {
+      dispatch({type: 'ADD_BAD', name: name})
+    }
+  }
+}
+
+const connectedStarwars = connect(mapStateToProps,mapDispatchToProps)(StarwarsPeople)
 export default connectedStarwars
