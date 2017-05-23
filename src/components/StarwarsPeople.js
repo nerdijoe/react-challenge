@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import StarwarsButton from './addStarwarsButton'
+import { addGoodPerson, addBadPerson } from '../actions'
+
 class StarwarsPeople extends React.Component {
 
   render() {
@@ -43,10 +45,12 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     add_good_person: (name) => {
-      dispatch({type: 'ADD_GOOD', name: name})
+      // dispatch({type: 'ADD_GOOD', name: name})
+      dispatch(addGoodPerson(name))
     },
     add_bad_person: (name) => {
-      dispatch({type: 'ADD_BAD', name: name})
+      // dispatch({type: 'ADD_BAD', name: name})
+      dispatch(addBadPerson(name))
     }
   }
 }

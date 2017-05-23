@@ -3,10 +3,10 @@ import axios from 'axios'
 import { Provider } from 'react-redux'
 
 import './App.css';
-import AddPersonButton from './AddPersonButton.js'
-import Person from './Person.js'
-import Starwars from './StarwarsPeople'
-import GoodBadList from './GoodBadList'
+import AddPersonButton from './components/AddPersonButton.js'
+import Person from './components/Person.js'
+import Starwars from './components/StarwarsPeople'
+import GoodBadList from './components/GoodBadList'
 import store from './store/manageStore'
 
 import {
