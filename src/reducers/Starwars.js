@@ -10,7 +10,7 @@ const Starwars = (state = starwarsInitialState, action) => {
       console.log('Do TEST ' + action.id)
       return state
     }
-    case 'addFromAPI': {
+    case 'ADD_FROM_API': {
       console.log(action.people)
       return [...state, action.people]
     }

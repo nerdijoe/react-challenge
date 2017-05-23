@@ -6,7 +6,7 @@ class addStarwarsButton extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={() => {this.props.test(3)}}>test</button>
+        <button onClick={() => {this.props.test(3)}}>add</button>
       </div>
     )
   }
