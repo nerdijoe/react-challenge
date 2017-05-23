@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
-import './App.css';
 import axios from 'axios'
-import AddPersonButton from './AddPersonButton.js'
+import { Provider } from 'react-redux'
 
-import Person from './Person.js'
+import './App.css';
+import AddPersonButton from './components/AddPersonButton.js'
+import Person from './components/Person.js'
+import Starwars from './components/StarwarsPeople'
+import GoodBadList from './components/GoodBadList'
+
+import store from './store/manageStore'
+
 
 import {
   BrowserRouter,
@@ -12,7 +18,7 @@ import {
 } from 'react-router-dom'
 
 
-const Home = (props) => { 
+const Home = (props) => {
   return (
 
       <div>
@@ -21,7 +27,7 @@ const Home = (props) => {
         <AddPersonButton clickAddPerson={() => { props.clickAddPerson()}} />
 
         <ul>
-          { 
+          {
             props.people.map( (p, i) => {
             return (
               <li key={p.url}>
@@ -35,7 +41,7 @@ const Home = (props) => {
       </div>
 
   )
-  
+
 }
 
 
@@ -61,10 +67,11 @@ class App extends Component {
     let self = this
     axios.get(`http://swapi.co/api/people/${this.state.index}/`)
     .then(response => {
-      console.log(response.data)
+
 
       let people = self.state.people
       people.push(response.data)
+      console.log(people)
 
       let index = self.state.index + 1
       console.log(index)
@@ -73,6 +80,9 @@ class App extends Component {
         index: index
       })
 
+      // store.dispatch({type: 'ADD_FROM_API', people: response.data})
+
+      // store.dispatch(fetchFromAPI())
 
     })
     .catch( err => {
@@ -100,6 +110,8 @@ class App extends Component {
         index: index
       })
 
+      // store.dispatch({type: 'ADD_FROM_API', people: response.data})
+
 
     })
     .catch( err => {
@@ -116,11 +128,21 @@ class App extends Component {
 
   render() {
     console.log("render")
+    console.log(store.getState())
+    // store.dispatch({type: 'TEST'});
     return (
       <BrowserRouter>
         <div>
           <Home people={this.state.people} clickAddPerson={ () => this.clickAddPerson()}  />
           <Route path='/person/:index' component={(props) => <Person match={props.match} getPeople={this.getPeople() } />} />
+
+          <Provider store={store}>
+            <div>
+              <Starwars />
+              <GoodBadList />
+            </div>
+          </Provider>
+
         </div>
       </BrowserRouter>
 
